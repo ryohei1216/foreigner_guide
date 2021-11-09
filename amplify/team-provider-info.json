@@ -1,0 +1,20 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-foreignerguide-dev-23702-authRole",
+      "UnauthRoleArn": "arn:aws:iam::094529297333:role/amplify-foreignerguide-dev-23702-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::094529297333:role/amplify-foreignerguide-dev-23702-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-foreignerguide-dev-23702-deployment",
+      "UnauthRoleName": "amplify-foreignerguide-dev-23702-unauthRole",
+      "StackName": "amplify-foreignerguide-dev-23702",
+      "StackId": "arn:aws:cloudformation:us-east-1:094529297333:stack/amplify-foreignerguide-dev-23702/a7f44ed0-4183-11ec-85e6-0eff9922f2df",
+      "AmplifyAppId": "d2b2nql6n435pg"
+    },
+    "categories": {
+      "auth": {
+        "foreignerguide663a6f34": {}
+      }
+    }
+  }
+}
