@@ -1,0 +1,49 @@
+{
+  "paths": [
+    {
+      "name": "/items",
+      "lambdaFunction": "foreignerguide93b64887",
+      "privacy": {
+        "protected": true,
+        "auth": [
+          "/POST",
+          "/GET",
+          "/PUT",
+          "/PATCH",
+          "/DELETE"
+        ],
+        "unauth": [
+          "/POST",
+          "/GET",
+          "/PUT",
+          "/PATCH",
+          "/DELETE"
+        ]
+      },
+      "policyResourceName": "/items"
+    }
+  ],
+  "resourceName": "api8a1cccdc",
+  "apiName": "api8a1cccdc",
+  "functionArns": [
+    {
+      "lambdaFunction": "foreignerguide93b64887"
+    }
+  ],
+  "privacy": {
+    "auth": 1,
+    "unauth": 1,
+    "authRoleName": "amplify-foreignerguide-dev-23702-authRole",
+    "unAuthRoleName": "amplify-foreignerguide-dev-23702-unauthRole"
+  },
+  "dependsOn": [
+    {
+      "category": "function",
+      "resourceName": "foreignerguide93b64887",
+      "attributes": [
+        "Name",
+        "Arn"
+      ]
+    }
+  ]
+}

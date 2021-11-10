@@ -1,6 +1,6 @@
 {
     "identityPoolName": "foreignerguide663a6f34_identitypool_663a6f34",
-    "allowUnauthenticatedIdentities": false,
+    "allowUnauthenticatedIdentities": true,
     "resourceNameTruncated": "foreig663a6f34",
     "userPoolName": "foreignerguide663a6f34_userpool_663a6f34",
     "autoVerifiedAttributes": [
