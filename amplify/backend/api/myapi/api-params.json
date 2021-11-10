@@ -1,0 +1,35 @@
+{
+  "paths": [
+    {
+      "name": "/greeting",
+      "lambdaFunction": "mygofunction",
+      "privacy": {
+        "open": true
+      },
+      "policyResourceName": "/greeting"
+    }
+  ],
+  "resourceName": "myapi",
+  "apiName": "myapi",
+  "functionArns": [
+    {
+      "lambdaFunction": "mygofunction"
+    }
+  ],
+  "privacy": {
+    "auth": 0,
+    "unauth": 0,
+    "authRoleName": "amplify-foreignerguide-dev-162856-authRole",
+    "unAuthRoleName": "amplify-foreignerguide-dev-162856-unauthRole"
+  },
+  "dependsOn": [
+    {
+      "category": "function",
+      "resourceName": "mygofunction",
+      "attributes": [
+        "Name",
+        "Arn"
+      ]
+    }
+  ]
+}
