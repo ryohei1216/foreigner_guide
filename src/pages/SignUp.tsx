@@ -27,9 +27,14 @@ const SignUp = () => {
       password: data.get("password"),
     };
 
-    axios.post("http://localhost:8080/userCreate", user_data).then((res) => {
-      console.log(res);
-    });
+    axios
+      .post(
+        "https://sheltered-plains-16427.herokuapp.com/userCreate",
+        user_data
+      )
+      .then((res) => {
+        console.log(res);
+      });
   };
 
   return (
