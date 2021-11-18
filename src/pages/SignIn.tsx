@@ -1,5 +1,11 @@
 import * as React from "react";
 import { useHistory } from "react-router-dom";
+import { getDomain } from "../utils/config";
+import axios from "axios";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { useDispatch } from "react-redux";
+
+//conponents
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -8,16 +14,15 @@ import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
-
-import { getDomain } from "../utils/config";
-import axios from "axios";
 
 const theme = createTheme();
 
 export default function SignIn() {
   const domain = getDomain();
   const history = useHistory();
+
+  const dispatch = useDispatch();
+
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -28,7 +33,15 @@ export default function SignIn() {
 
     axios.post(`http://${domain}/signin`, user_data).then((res) => {
       console.log(res);
+
       if (res.status === 200) {
+        dispatch({
+          type: "SAVE_SIGNIN_INFO",
+          payload: {
+            email: res.data.getUser.email,
+            password: res.data.getUser.password,
+          },
+        });
         history.push("/");
       }
     });

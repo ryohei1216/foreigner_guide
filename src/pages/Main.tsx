@@ -1,4 +1,3 @@
-import * as React from "react";
 import Button from "@mui/material/Button";
 import CameraIcon from "@mui/icons-material/PhotoCamera";
 import Card from "@mui/material/Card";
@@ -12,22 +11,19 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import styled from "styled-components";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import { DefaultRootState, LoginInfo } from "../utils/store/type";
 
 const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
 const theme = createTheme();
 
 const Main = () => {
-  const count = useSelector((state) => state);
-  const dispatch = useDispatch();
-  const increase = () => {
-    dispatch({ type: "INCREASE_COUNT" });
-  };
-  const decrease = () => {
-    dispatch({ type: "DECREASE_COUNT" });
-  };
-  console.log(count);
+  const singinInfoState = useSelector<DefaultRootState, LoginInfo>(
+    (state) => state.loginInfo
+  );
+  console.log(singinInfoState);
+
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
@@ -78,10 +74,6 @@ const Main = () => {
             ))}
           </Grid>
         </Container>
-      </div>
-      <div>
-        <button onClick={increase}>UP</button>
-        <button onClick={decrease}>DOWN</button>
       </div>
     </ThemeProvider>
   );
