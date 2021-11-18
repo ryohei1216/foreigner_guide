@@ -9,7 +9,9 @@ import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
+
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { getDomain } from "../utils/config";
 
 import axios from "axios";
 
@@ -27,14 +29,12 @@ const SignUp = () => {
       password: data.get("password"),
     };
 
-    axios
-      .post(
-        "https://sheltered-plains-16427.herokuapp.com/userCreate",
-        user_data
-      )
-      .then((res) => {
-        console.log(res);
-      });
+    const domain = getDomain();
+    console.log(domain);
+
+    axios.post(`http://${domain}/userCreate`, user_data).then((res) => {
+      console.log(res);
+    });
   };
 
   return (
@@ -70,6 +70,7 @@ const SignUp = () => {
                   fullWidth
                   id="firstName"
                   label="First Name"
+                  aria-required="true"
                   autoFocus
                 />
               </Grid>
@@ -80,6 +81,7 @@ const SignUp = () => {
                   id="lastName"
                   label="Last Name"
                   name="lastName"
+                  aria-required="true"
                   autoComplete="family-name"
                 />
               </Grid>
@@ -90,6 +92,7 @@ const SignUp = () => {
                   id="email"
                   label="Email Address"
                   name="email"
+                  aria-required="true"
                   autoComplete="email"
                 />
               </Grid>
@@ -101,6 +104,7 @@ const SignUp = () => {
                   label="Password"
                   type="password"
                   id="password"
+                  aria-required="true"
                   autoComplete="new-password"
                 />
               </Grid>

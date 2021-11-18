@@ -4,6 +4,8 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Link from "@mui/material/Link";
 
+import { useHistory } from "react-router-dom";
+
 interface HeaderProps {
   sections: ReadonlyArray<{
     title: string;
@@ -14,6 +16,7 @@ interface HeaderProps {
 
 export const Header = (props: HeaderProps) => {
   const { sections, title } = props;
+  const history = useHistory();
 
   return (
     <React.Fragment>
@@ -29,7 +32,22 @@ export const Header = (props: HeaderProps) => {
         >
           {title}
         </Typography>
-        <Button variant="outlined" size="small">
+        <Button
+          variant="outlined"
+          size="small"
+          onClick={() => {
+            history.push("/signin");
+          }}
+        >
+          Sign In
+        </Button>
+        <Button
+          variant="outlined"
+          size="small"
+          onClick={() => {
+            history.push("/signup");
+          }}
+        >
           Sign up
         </Button>
       </Toolbar>
