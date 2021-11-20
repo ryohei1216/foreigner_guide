@@ -21,7 +21,7 @@ const Country = () => {
   const [country, setCountry] = useState<CountriesInterface>();
 
   useEffect(() => {
-    axios.get(`http://${domain}/country?q=${id}`).then((res) => {
+    axios.get(`https://${domain}/country?q=${id}`).then((res) => {
       console.log(res);
       setCountry(res.data.countries);
     });
