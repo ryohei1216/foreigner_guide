@@ -21,10 +21,12 @@ const Country = () => {
   const [country, setCountry] = useState<CountriesInterface>();
 
   useEffect(() => {
-    axios.get(`https://${domain}/country?q=${id}`).then((res) => {
-      console.log(res);
-      setCountry(res.data.countries);
-    });
+    axios
+      .get(`https://sheltered-plains-16427.herokuapp.com/country?q=${id}`)
+      .then((res) => {
+        console.log(res);
+        setCountry(res.data.countries);
+      });
   }, [domain, id]);
 
   console.log(country?.value);
