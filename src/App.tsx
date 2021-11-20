@@ -4,6 +4,7 @@ import { Layout } from "./components/layouts/Layout";
 import Main from "./pages/Main";
 import SignUp from "./pages/SignUp";
 import SignIn from "./pages/SignIn";
+import Country from "./pages/Country";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
           <Route exact path="/" component={Main} />
           <Route path="/signup" component={SignUp} />
           <Route path="/signin" component={SignIn} />
+          <Route path="/country/:id" component={Country} />
         </Switch>
       </Layout>
     </BrowserRouter>
