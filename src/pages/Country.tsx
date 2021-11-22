@@ -50,15 +50,16 @@ const Country = () => {
       <div>
         <Container sx={{ py: 8 }} maxWidth="lg">
           <Grid container spacing={4}>
-            {country?.value.map((data) => (
-              <Grid item key={country.webSearchUrl} xs={12} sm={6} md={4}>
-                <CountryCard
-                  webUrl={data.webSearchUrl}
-                  imageUrl={data.contentUrl}
-                  title={data.name}
-                />
-              </Grid>
-            ))}
+            {country &&
+              country.value.map((data) => (
+                <Grid item key={country.webSearchUrl} xs={12} sm={6} md={4}>
+                  <CountryCard
+                    webUrl={data.webSearchUrl}
+                    imageUrl={data.contentUrl}
+                    title={data.name}
+                  />
+                </Grid>
+              ))}
           </Grid>
         </Container>
       </div>
