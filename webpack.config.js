@@ -23,13 +23,13 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       title: "Foreigner Guide",
-      template: "public/index.html",
+      template: "src/index.html",
       filename: "index.html",
     }),
   ],
   devServer: {
     static: {
-      directory: path.join(__dirname, "public"),
+      directory: path.join(__dirname, "build"),
     },
     port: 3000,
   },
