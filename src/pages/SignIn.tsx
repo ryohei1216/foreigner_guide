@@ -18,7 +18,7 @@ import Container from "@mui/material/Container";
 const theme = createTheme();
 
 export default function SignIn() {
-  const domain = getDomain();
+  // const domain = getDomain();
   const history = useHistory();
 
   const dispatch = useDispatch();
@@ -31,7 +31,7 @@ export default function SignIn() {
       password: data.get("password"),
     };
 
-    axios.post(`http://${domain}/signin`, user_data).then((res) => {
+    axios.post(`http://localhost:8080/signin`, user_data).then((res) => {
       console.log(res);
 
       if (res.status === 200) {
@@ -72,6 +72,7 @@ export default function SignIn() {
             sx={{ mt: 1 }}
           >
             <TextField
+              className="input_email"
               margin="normal"
               required
               fullWidth
@@ -82,6 +83,7 @@ export default function SignIn() {
               autoFocus
             />
             <TextField
+              className="input_password"
               margin="normal"
               required
               fullWidth
@@ -92,6 +94,7 @@ export default function SignIn() {
               autoComplete="current-password"
             />
             <Button
+              className="signin_button"
               type="submit"
               fullWidth
               variant="contained"

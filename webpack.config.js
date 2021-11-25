@@ -5,7 +5,6 @@ module.exports = {
   mode: "development",
   entry: "./src/index.tsx",
   output: {
-    //  出力ファイルのディレクトリ名
     filename: "bundle.js",
     path: path.resolve(__dirname, "build"),
   },
@@ -14,6 +13,10 @@ module.exports = {
       {
         test: /\.tsx?$/,
         use: "ts-loader",
+        exclude: [
+          /node_modules/,
+          path.resolve(__dirname, "./src/__test__/**/*"),
+        ],
       },
     ],
   },
@@ -31,6 +34,7 @@ module.exports = {
     static: {
       directory: path.join(__dirname, "build"),
     },
+    hot: true,
     port: 3000,
   },
 };

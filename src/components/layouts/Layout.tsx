@@ -8,7 +8,10 @@ type Props = {
 
 export const Layout: VFC<Props> = ({ children }) => {
   const headerProps = {
-    sections: [{ title: "TOP", url: "/" }],
+    sections: [
+      { title: "TOP", url: "/" },
+      { title: "Countries", url: "/countries" },
+    ],
     title: "Foreigner Guide",
   };
   return (

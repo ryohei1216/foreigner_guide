@@ -11,7 +11,17 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { CommonCard } from "../components/CommonCard";
 
-const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+const countries = [
+  "アメリカ",
+  "イギリス",
+  "フランス",
+  "ロシア",
+  "ドイツ",
+  "カナダ",
+  "ロシア",
+  "イタリア",
+  "シンガポール",
+];
 
 const theme = createTheme();
 
@@ -25,19 +35,19 @@ const Main = () => {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <ToolBarCenter>
-        <Toolbar style={{ margin: "0 auto", width: "40%" }}>
+        <Toolbar style={{ margin: "0 auto", width: "30%" }}>
           <CameraIcon fontSize="large" sx={{ mr: 2 }} />
           <Typography variant="h4" color="inherit" noWrap>
-            Foreigner Guide へようこそ
+            訪れたい国を選ぶ
           </Typography>
         </Toolbar>
       </ToolBarCenter>
       <div>
         <Container sx={{ py: 8 }} maxWidth="lg">
           <Grid container spacing={4}>
-            {cards.map((card) => (
-              <Grid item key={card} xs={12} sm={6} md={4}>
-                {/* <CommonCard /> */}
+            {countries.map((country) => (
+              <Grid item key={country} xs={12} sm={6} md={4}>
+                <CommonCard country={country} />
               </Grid>
             ))}
           </Grid>
