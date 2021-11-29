@@ -31,7 +31,7 @@ export default function SignIn() {
       password: data.get("password"),
     };
 
-    axios.post(`http://localhost:8080/signin`, user_data).then((res) => {
+    axios.post(`http://${getDomain()}/signin`, user_data).then((res) => {
       console.log(res);
 
       if (res.status === 200) {

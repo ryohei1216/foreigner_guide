@@ -8,7 +8,8 @@
     "@emotion/styled": "^11.6.0",
     "@mui/icons-material": "^5.1.1",
     "@mui/material": "^5.1.0",
-    "@testing-library/jest-dom": "^5.11.4",
+    "@reduxjs/toolkit": "^1.6.2",
+    "@testing-library/jest-dom": "^5.15.1",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
     "@types/babel__generator": "^7.6.3",
@@ -38,7 +39,7 @@
     "start": "react-scripts start",
     "build": "webpack",
     "dev": "webpack-dev-server",
-    "test": "jest --env=jsdom",
+    "test": "jest --env=jsdom --verbose",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -73,6 +74,7 @@
     "enzyme-to-json": "^3.6.2",
     "html-webpack-plugin": "^5.5.0",
     "jest": "^27.3.1",
+    "msw": "^0.35.0",
     "react-test-renderer": "^17.0.2",
     "ts-jest": "^27.0.7",
     "ts-loader": "^9.2.6",
