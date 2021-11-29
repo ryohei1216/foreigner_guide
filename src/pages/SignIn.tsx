@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useHistory } from "react-router-dom";
-import { getDomain } from "../utils/config";
+import { getDomain, getApiDomain } from "../utils/config";
 import axios from "axios";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useDispatch } from "react-redux";
@@ -35,7 +35,7 @@ export default function SignIn() {
       password: data.get("password"),
     };
 
-    axios.post(`http://${getDomain()}/signin`, user_data).then((res) => {
+    axios.post(`https://${getApiDomain()}/signin`, user_data).then((res) => {
       console.log(res);
 
       if (res.status === 200) {
