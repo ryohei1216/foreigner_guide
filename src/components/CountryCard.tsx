@@ -18,7 +18,7 @@ export const CountryCard: React.FC<Props> = ({ webUrl, imageUrl, title }) => {
     <Card sx={{ maxWidth: 345 }}>
       <CardMedia component="img" alt={title} height="140" image={imageUrl} />
       <CardContent>
-        <Typography variant="body2" color="text.secondary">
+        <Typography data-testid="title" variant="body2" color="text.secondary">
           {title}
         </Typography>
       </CardContent>
