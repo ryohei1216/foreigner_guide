@@ -97,7 +97,5 @@ export const { increment, decrement, incrementByAmount } =
 export const selectCount = (state: RootState) => state.customCounter.value;
 export const selectUsername = (state: RootState) =>
   state.customCounter.username;
-// export const selectUsername = (state: RootState) =>
-//   state.customCounter.username;
 
 export default customCounterSlice.reducer;

@@ -4,6 +4,8 @@ import { getDomain } from "../utils/config";
 import axios from "axios";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useDispatch } from "react-redux";
+import { useAppSelector, useAppDispatch } from "../store/hooks";
+import { signIn } from "../store/features/signInInfo/signInInfoSlice";
 
 //conponents
 import Avatar from "@mui/material/Avatar";
@@ -21,7 +23,9 @@ export default function SignIn() {
   // const domain = getDomain();
   const history = useHistory();
 
-  const dispatch = useDispatch();
+  const signInInfo = useAppSelector((state) => state.signInInfo);
+  console.log(signInInfo);
+  const dispatch = useAppDispatch();
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -35,13 +39,14 @@ export default function SignIn() {
       console.log(res);
 
       if (res.status === 200) {
-        dispatch({
-          type: "SAVE_SIGNIN_INFO",
-          payload: {
+        dispatch(
+          signIn({
             email: res.data.getUser.email,
             password: res.data.getUser.password,
-          },
-        });
+          })
+        );
+        // type: "SAVE_SIGNIN_INFO",
+
         history.push("/");
       }
     });
