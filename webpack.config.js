@@ -30,6 +30,7 @@ module.exports = {
       filename: "index.html",
     }),
   ],
+  //dev-web-server時の設定？
   devServer: {
     static: {
       directory: path.join(__dirname, "build"),

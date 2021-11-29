@@ -1,9 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
-import App from "./__test__/App";
+import App from "./App";
 
-import store from "./utils/store";
+import { store } from "./__test__/features/customCounter/store";
 
 ReactDOM.render(
   <React.StrictMode>

@@ -1,6 +1,10 @@
 import React from "react";
 import RenderInput from "./RenderInput";
 import FrameworkList from "./FramewotkList";
+import UseEffectRender from "./useEffectRender";
+import MockServer from "./MockServer";
+import Redux from "./Redux";
+import ReduxAsync from "./ReduxAsync";
 
 const App = () => {
   const data = [
@@ -22,8 +26,12 @@ const App = () => {
   };
   return (
     <div>
+      {/* <MockServer />
       <RenderInput outputConsole={outputConsole} />
       <FrameworkList />
+      <UseEffectRender /> */}
+      <Redux />
+      <ReduxAsync />
     </div>
   );
 };
