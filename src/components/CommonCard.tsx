@@ -27,7 +27,12 @@ export const CommonCard: FC<Props> = ({ country }) => {
         image="/static/images/cards/contemplative-reptile.jpg"
       />
       <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
+        <Typography
+          data-testid="country"
+          gutterBottom
+          variant="h5"
+          component="div"
+        >
           {country}
         </Typography>
         <Typography variant="body2" color="text.secondary">
