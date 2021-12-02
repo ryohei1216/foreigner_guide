@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import styled from "styled-components";
 import axios from "axios";
-import { getDomain } from "../utils/config";
+import { getDomain, getApiDomain } from "../utils/config";
 import { CountriesInterface } from "../../type";
 //components
 import CssBaseline from "@mui/material/CssBaseline";
@@ -17,19 +17,17 @@ const theme = createTheme();
 
 const Country = () => {
   const domain = getDomain();
+  const apiDomain = getApiDomain();
   const { id } = useParams<{ id: string }>();
   const [country, setCountry] = useState<CountriesInterface>();
+  console.log(id);
 
   useEffect(() => {
-    axios
-      .get(`https://sheltered-plains-16427.herokuapp.com/country?q=${id}`)
-      .then((res) => {
-        console.log(res);
-        setCountry(res.data.countries);
-      });
-  }, [domain, id]);
-
-  console.log(country?.value);
+    axios.get(`${apiDomain}/country?q=${id}`).then((res) => {
+      // console.log(res);
+      setCountry(res.data.countries);
+    });
+  }, [id, apiDomain]);
 
   return (
     <ThemeProvider theme={theme}>
@@ -42,6 +40,7 @@ const Country = () => {
             noWrap
             width="100%"
             align="center"
+            data-testid="id"
           >
             {id}
           </Typography>

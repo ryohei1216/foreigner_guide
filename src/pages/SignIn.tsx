@@ -1,13 +1,11 @@
-import * as React from "react";
+import React from "react";
 import { useHistory } from "react-router-dom";
-import { getDomain, getApiDomain } from "../utils/config";
+import { getApiDomain } from "../utils/config";
 import axios from "axios";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { useDispatch } from "react-redux";
 import { useAppSelector, useAppDispatch } from "../store/hooks";
-import { signIn } from "../store/features/signInInfo/signInInfoSlice";
 
-//conponents
+//components
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -16,11 +14,11 @@ import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
+import { signIn } from "../store/features/signInInfo/signInInfoSlice";
 
 const theme = createTheme();
 
 export default function SignIn() {
-  // const domain = getDomain();
   const history = useHistory();
 
   const signInInfo = useAppSelector((state) => state.signInInfo);
@@ -35,9 +33,7 @@ export default function SignIn() {
       password: data.get("password"),
     };
 
-    axios.post(`https://${getApiDomain()}/signin`, user_data).then((res) => {
-      console.log(res);
-
+    axios.post(`${getApiDomain()}/signIn`, user_data).then((res) => {
       if (res.status === 200) {
         dispatch(
           signIn({
@@ -45,8 +41,6 @@ export default function SignIn() {
             password: res.data.getUser.password,
           })
         );
-        // type: "SAVE_SIGNIN_INFO",
-
         history.push("/");
       }
     });
@@ -86,6 +80,7 @@ export default function SignIn() {
               name="email"
               autoComplete="email"
               autoFocus
+              data-testid="input_email"
             />
             <TextField
               className="input_password"
@@ -97,6 +92,7 @@ export default function SignIn() {
               type="password"
               id="password"
               autoComplete="current-password"
+              data-testid="input_password"
             />
             <Button
               className="signin_button"

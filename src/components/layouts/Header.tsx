@@ -3,8 +3,9 @@ import Toolbar from "@mui/material/Toolbar";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Link from "@mui/material/Link";
-
 import { useHistory } from "react-router-dom";
+import { useAppSelector, useAppDispatch } from "../../store/hooks";
+import { signIn } from "../../store/features/signInInfo/signInInfoSlice";
 
 interface HeaderProps {
   sections: ReadonlyArray<{
@@ -17,6 +18,13 @@ interface HeaderProps {
 export const Header = (props: HeaderProps) => {
   const { sections, title } = props;
   const history = useHistory();
+  const dispatch = useAppDispatch();
+  const signInInfo = useAppSelector((state) => state.signInInfo);
+
+  const signOut = () => {
+    dispatch(signIn({ email: "", password: "" }));
+    history.push("/");
+  };
 
   return (
     <React.Fragment>
@@ -32,15 +40,28 @@ export const Header = (props: HeaderProps) => {
         >
           {title}
         </Typography>
-        <Button
-          variant="outlined"
-          size="small"
-          onClick={() => {
-            history.push("/signin");
-          }}
-        >
-          Sign In
-        </Button>
+        {!signInInfo.email ? (
+          <Button
+            variant="outlined"
+            size="small"
+            onClick={() => {
+              history.push("/signin");
+            }}
+          >
+            Sign In
+          </Button>
+        ) : (
+          <Button
+            variant="outlined"
+            size="small"
+            onClick={() => {
+              signOut();
+            }}
+          >
+            Sign Out
+          </Button>
+        )}
+
         <Button
           variant="outlined"
           size="small"
@@ -48,7 +69,7 @@ export const Header = (props: HeaderProps) => {
             history.push("/country/アメリカ");
           }}
         >
-          Sign up
+          Sign Up
         </Button>
       </Toolbar>
       <Toolbar
