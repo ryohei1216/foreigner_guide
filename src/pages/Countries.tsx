@@ -2,6 +2,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
 import { DefaultRootState, LoginInfo } from "../utils/store/type";
+import { useAppSelector, useAppDispatch } from "../store/hooks";
 //components
 import CameraIcon from "@mui/icons-material/PhotoCamera";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -25,11 +26,9 @@ const countries = [
 
 const theme = createTheme();
 
-const Main = () => {
-  const singinInfoState = useSelector<DefaultRootState, LoginInfo>(
-    (state) => state.loginInfo
-  );
-  console.log(singinInfoState);
+const Countries = () => {
+  const signInInfo = useAppSelector((state) => state.signInInfo);
+  console.log("singInInfo: ", signInInfo);
 
   return (
     <ThemeProvider theme={theme}>
@@ -61,4 +60,4 @@ const ToolBarCenter = styled.div`
   margin: 0 auto;
 `;
 
-export default Main;
+export default Countries;
