@@ -1,5 +1,7 @@
+import React from "react";
 import styled from "styled-components";
 import { useAppSelector } from "../store/hooks";
+
 //components
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import CameraIcon from "@mui/icons-material/PhotoCamera";
@@ -8,7 +10,7 @@ import Grid from "@mui/material/Grid";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import { CommonCard } from "../components/CommonCard";
+import { CountriesCard } from "../components/CountriesCard";
 
 const countries = [
   "アメリカ",
@@ -44,7 +46,7 @@ const Countries = () => {
           <Grid container spacing={4}>
             {countries.map((country) => (
               <Grid item key={country} xs={12} sm={6} md={4}>
-                <CommonCard country={country} />
+                <CountriesCard country={country} />
               </Grid>
             ))}
           </Grid>

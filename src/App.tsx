@@ -22,9 +22,9 @@ function App() {
           <Route path="/country/:id" component={Country} />
           <Route path="/guides" component={Guides} />
           <Route path="/guides_area" component={SelectGuideArea} />
-          <Route path="/guides_area/:area" component={GuidesArea} />
+          {/* <Route path="/guides_area/:area" component={GuidesArea} /> */}
           <Route path="/guides_country" component={SelectGuideCountry} />
-          <Route path="/guides_country/:country" component={GuidesCountry} />
+          {/* <Route path="/guides_country/:country" component={GuidesCountry} /> */}
         </Switch>
       </Layout>
     </BrowserRouter>

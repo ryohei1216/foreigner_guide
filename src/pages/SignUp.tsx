@@ -33,7 +33,7 @@ const SignUp = () => {
     console.log(domain);
 
     axios
-      .post(`http://${domain}/userCreate`, user_data)
+      .post(`http://${domain}/signUp`, user_data)
       .then((res) => {
         console.log(res);
       })
