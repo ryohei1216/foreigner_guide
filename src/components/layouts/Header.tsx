@@ -66,7 +66,7 @@ export const Header = (props: HeaderProps) => {
           variant="outlined"
           size="small"
           onClick={() => {
-            history.push("/country/アメリカ");
+            history.push("/signup");
           }}
         >
           Sign Up

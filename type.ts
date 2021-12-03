@@ -48,3 +48,12 @@ export interface BestRepresentativeQuery {
   displayText: string;
   webSearchUrl: string;
 }
+
+/**
+ * Main
+ */
+
+export type MenuItem = {
+  title: string;
+  path: string;
+};

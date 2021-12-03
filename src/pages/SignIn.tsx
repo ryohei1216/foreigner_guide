@@ -33,17 +33,22 @@ export default function SignIn() {
       password: data.get("password"),
     };
 
-    axios.post(`${getApiDomain()}/signIn`, user_data).then((res) => {
-      if (res.status === 200) {
-        dispatch(
-          signIn({
-            email: res.data.getUser.email,
-            password: res.data.getUser.password,
-          })
-        );
-        history.push("/");
-      }
-    });
+    axios
+      .post(`${getApiDomain()}/signIn`, user_data)
+      .then((res) => {
+        if (res.status === 200) {
+          dispatch(
+            signIn({
+              email: res.data.getUser.email,
+              password: res.data.getUser.password,
+            })
+          );
+          history.push("/");
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (

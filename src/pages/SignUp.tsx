@@ -32,9 +32,14 @@ const SignUp = () => {
     const domain = getDomain();
     console.log(domain);
 
-    axios.post(`http://${domain}/userCreate`, user_data).then((res) => {
-      console.log(res);
-    });
+    axios
+      .post(`http://${domain}/userCreate`, user_data)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
