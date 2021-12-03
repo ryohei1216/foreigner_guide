@@ -52,8 +52,23 @@ export interface BestRepresentativeQuery {
 /**
  * Main
  */
-
 export type MenuItem = {
+  title: string;
+  path: string;
+};
+
+/**
+ * GuidesArea
+ */
+export type areaItem = {
+  title: string;
+  path: string;
+};
+
+/**
+ * GuidesCountry
+ */
+export type countryItem = {
   title: string;
   path: string;
 };
