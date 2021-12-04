@@ -22,20 +22,23 @@ export const CountriesCard: FC<Props> = ({ country }) => {
     history.push(`/country/${country}`);
   };
 
+  const loadFailedData = {
+    data: {
+      wiki: {
+        description: "読み込み失敗",
+        thumbnail: {
+          url: "https://jmva.or.jp/wp-content/uploads/2018/07/noimage.png",
+        },
+      },
+    },
+  };
+
   const getWiki = async () => {
     const wikiData = await axios
       .get(`${apiDomain}/country_wiki?q=${country}`)
       .catch((err) => {
-        return {
-          data: {
-            wiki: {
-              description: "読み込み失敗",
-              thumbnail: {
-                url: "https://jmva.or.jp/wp-content/uploads/2018/07/noimage.png",
-              },
-            },
-          },
-        };
+        console.log(err);
+        return loadFailedData;
       });
     return wikiData;
   };

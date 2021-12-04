@@ -50,6 +50,18 @@ export interface BestRepresentativeQuery {
 }
 
 /**
+ * User
+ */
+export type User = {
+  Id: string;
+  FirstName: string;
+  LastName: string;
+  Email: string;
+  Password: string;
+  Area: string;
+};
+
+/**
  * Main
  */
 export type MenuItem = {

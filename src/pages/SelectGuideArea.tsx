@@ -43,7 +43,7 @@ const SelectGuideArea = () => {
                   fullWidth
                   style={{ fontSize: "20px", fontWeight: "bold" }}
                   onClick={() => {
-                    history.push(`${item.path}`);
+                    history.push(`/guides/${item.path}`);
                   }}
                 >
                   {item.title}

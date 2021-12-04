@@ -16,7 +16,7 @@ import { MenuItem } from "../../type";
 
 export const menuItems: MenuItem[] = [
   { title: "行きたい国を探す", path: "/countries" },
-  { title: "ガイドを探す", path: "/guides" },
+  { title: "ガイドを探す", path: "/search_guides" },
   { title: "案内する", path: "/guides" },
   { title: "メッセージ", path: "/message" },
   { title: "マイページ", path: "/mypage" },
@@ -42,7 +42,7 @@ const Main = () => {
         <Container sx={{ py: 8 }} maxWidth="lg">
           <Grid container spacing={4}>
             {menuItems.map((item) => (
-              <Grid item key={item.path} xs={4} alignItems="center">
+              <Grid item key={item.title} xs={4} alignItems="center">
                 <Button
                   variant="outlined"
                   color="primary"

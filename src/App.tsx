@@ -6,25 +6,25 @@ import SignUp from "./pages/SignUp";
 import SignIn from "./pages/SignIn";
 import Countries from "./pages/Countries";
 import Country from "./pages/Country";
-import Guides from "./pages/Guides";
+import SearchGuides from "./pages/SearchGuides";
 import SelectGuideArea from "./pages/SelectGuideArea";
 import SelectGuideCountry from "./pages/SelectGuideCountry";
-
+import GuidesArea from "./pages/GuidesArea";
 function App() {
   return (
     <BrowserRouter>
       <Layout>
         <Switch>
           <Route exact path="/" component={Main} />
-          <Route path="/signup" component={SignUp} />
-          <Route path="/signin" component={SignIn} />
-          <Route path="/countries" component={Countries} />
-          <Route path="/country/:id" component={Country} />
-          <Route path="/guides" component={Guides} />
-          <Route path="/guides_area" component={SelectGuideArea} />
-          {/* <Route path="/guides_area/:area" component={GuidesArea} /> */}
-          <Route path="/guides_country" component={SelectGuideCountry} />
-          {/* <Route path="/guides_country/:country" component={GuidesCountry} /> */}
+          <Route exact path="/signup" component={SignUp} />
+          <Route exact path="/signin" component={SignIn} />
+          <Route exact path="/countries" component={Countries} />
+          <Route exact path="/country/:id" component={Country} />
+          <Route exact path="/search_guides" component={SearchGuides} />
+          <Route exact path="/guides_area" component={SelectGuideArea} />
+          <Route exact path="/guides/:area" component={GuidesArea} />
+          <Route exact path="/guides_country" component={SelectGuideCountry} />
+          {/* <Route exact path="/guides_country/:country" component={GuidesCountry} /> */}
         </Switch>
       </Layout>
     </BrowserRouter>
