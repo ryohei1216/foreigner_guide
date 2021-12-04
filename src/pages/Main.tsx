@@ -26,10 +26,6 @@ const theme = createTheme();
 
 const Main = () => {
   const history = useHistory();
-  // const singInInfoState = useSelector<DefaultRootState, LoginInfo>(
-  //   (state) => state.loginInfo
-  // );
-  // console.log(singInInfoState);
 
   return (
     <ThemeProvider theme={theme}>

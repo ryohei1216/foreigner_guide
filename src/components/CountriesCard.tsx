@@ -9,7 +9,6 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import { setConstantValue } from "typescript";
 
 type Props = {
   country: string;
@@ -19,21 +18,40 @@ export const CountriesCard: FC<Props> = ({ country }) => {
   const history = useHistory();
   const apiDomain = getApiDomain();
   const [wiki, setWiki] = useState<any>();
-
   const jumpCountryPage = (country: string) => {
     history.push(`/country/${country}`);
   };
 
+  const getWiki = async () => {
+    const wikiData = await axios
+      .get(`${apiDomain}/country_wiki?q=${country}`)
+      .catch((err) => {
+        return {
+          data: {
+            wiki: {
+              description: "読み込み失敗",
+              thumbnail: {
+                url: "https://jmva.or.jp/wp-content/uploads/2018/07/noimage.png",
+              },
+            },
+          },
+        };
+      });
+    return wikiData;
+  };
+
   useEffect(() => {
-    axios.get(`${apiDomain}/country_wiki?q=${country}`).then((res) => {
-      console.log(res.data.wiki);
-      setWiki(res.data.wiki);
-    });
+    const setGetWiki = async () => {
+      const wiki = await getWiki();
+      setWiki(wiki.data.wiki);
+    };
+    setGetWiki();
   }, []);
 
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardMedia
+        data-testid="media"
         component="img"
         alt="National Flag"
         height="140"
@@ -48,7 +66,11 @@ export const CountriesCard: FC<Props> = ({ country }) => {
         >
           {country}
         </Typography>
-        <Typography variant="body2" color="text.secondary">
+        <Typography
+          data-testid="description"
+          variant="body2"
+          color="text.secondary"
+        >
           {wiki && wiki.description}
         </Typography>
       </CardContent>
