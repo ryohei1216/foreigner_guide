@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import styled from "styled-components";
 import axios from "axios";
-import { getDomain, getApiDomain } from "../utils/config";
+import { getApiDomain } from "../utils/config";
 import { CountriesInterface } from "../../type";
 //components
 import CssBaseline from "@mui/material/CssBaseline";
@@ -16,7 +16,6 @@ import { CountryCard } from "../components/CountryCard";
 const theme = createTheme();
 
 const Country = () => {
-  const domain = getDomain();
   const apiDomain = getApiDomain();
   const { id } = useParams<{ id: string }>();
   const [country, setCountry] = useState<CountriesInterface>();

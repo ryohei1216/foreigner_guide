@@ -50,10 +50,37 @@ export interface BestRepresentativeQuery {
 }
 
 /**
+ * User
+ */
+export type User = {
+  Id: string;
+  FirstName: string;
+  LastName: string;
+  Email: string;
+  Password: string;
+  Area: string;
+};
+
+/**
  * Main
  */
-
 export type MenuItem = {
+  title: string;
+  path: string;
+};
+
+/**
+ * GuidesArea
+ */
+export type areaItem = {
+  title: string;
+  path: string;
+};
+
+/**
+ * GuidesCountry
+ */
+export type countryItem = {
   title: string;
   path: string;
 };
