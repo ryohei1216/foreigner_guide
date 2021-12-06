@@ -2,7 +2,7 @@ version: 2.1
 jobs:
   test_frontend:
     docker:
-      - image: circleci/node
+      - image: circleci/node:14
     steps:
       - checkout
       - run: yarn install
