@@ -3,10 +3,13 @@ import { render, screen, cleanup, waitFor } from "@testing-library/react";
 import { rest } from "msw";
 import { setupServer } from "msw/node";
 import { CountriesCard } from "../../components/CountriesCard";
+import { getApiDomain } from "../../utils/config";
+
+const apiDomain = getApiDomain();
 
 //WikiAPIMockServerの設定
 const server = setupServer(
-  rest.get("http://localhost:8080/country_wiki", (req, res, ctx) => {
+  rest.get(`${apiDomain}/country_wiki`, (req, res, ctx) => {
     return res(
       ctx.status(200),
       ctx.json({
@@ -50,7 +53,7 @@ describe("components/CommonCard", () => {
 
   test("WikiAPIFetchのuseEffect非同期処理失敗⇒testの変更", async () => {
     server.use(
-      rest.get("http://localhost:8080/country_wiki", (req, res, ctx) => {
+      rest.get(`${apiDomain}/country_wiki`, (req, res, ctx) => {
         return res(ctx.status(400));
       })
     );
