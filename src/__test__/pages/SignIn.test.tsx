@@ -7,6 +7,9 @@ import { Provider } from "react-redux";
 import signInInfoReducer from "../../store/features/signInInfo/signInInfoSlice";
 import { configureStore } from "@reduxjs/toolkit";
 import SignIn from "../../pages/SignIn";
+import { getApiDomain } from "../../utils/config";
+
+const apiDomain = getApiDomain();
 
 //useHistoryのmock
 jest.mock("react-router-dom", () => ({
@@ -18,7 +21,7 @@ jest.mock("react-router-dom", () => ({
 
 //APIMockServerの設定
 const server = setupServer(
-  rest.post("http://localhost:8080/signIn", (req, res, ctx) => {
+  rest.post(`${apiDomain}/signIn`, (req, res, ctx) => {
     return res(
       ctx.status(200),
       ctx.json({
