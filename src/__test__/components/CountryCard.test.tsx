@@ -9,7 +9,6 @@ describe("components/CountryCard", () => {
     render(
       <CountryCard webUrl="weburl" imageUrl="imageUrl" title="アメリカ" />
     );
-    console.log(screen.debug());
     expect(screen.getByTestId("title")).toHaveTextContent("アメリカ");
   });
 });

@@ -41,7 +41,6 @@ afterAll(() => server.close());
 describe("pages/Country", () => {
   test("CountryAPI成功時⇒testidがある", async () => {
     render(<Country />);
-    console.log(await screen.debug());
     //Typography(queryParamsから国名取得)
     expect(await screen.findByTestId("id")).toHaveTextContent("アメリカ");
   });
