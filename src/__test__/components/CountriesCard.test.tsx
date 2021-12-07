@@ -4,6 +4,7 @@ import { rest } from "msw";
 import { setupServer } from "msw/node";
 import { CountriesCard } from "../../components/CountriesCard";
 import { getApiDomain } from "../../utils/config";
+import { setTimeout } from "timers";
 
 const apiDomain = getApiDomain();
 
@@ -33,8 +34,8 @@ afterEach(() => {
 });
 afterAll(() => server.close());
 
-describe("components/CommonCard", () => {
-  test("CommonCardにpropsを渡してタイトル表示", async () => {
+describe("components/CountriesCard", () => {
+  test("CountriesCardにpropsを渡してタイトル表示", async () => {
     render(<CountriesCard country="アメリカ" />);
     expect(screen.getByTestId("country")).toHaveTextContent("アメリカ");
   });
@@ -61,6 +62,7 @@ describe("components/CommonCard", () => {
     await waitFor(() => {
       render(<CountriesCard country="アメリカ" />);
     });
+    // await new Promise((resolve) => setTimeout(resolve, 3000));
     expect(await screen.findByTestId("description")).toHaveTextContent(
       "読み込み失敗"
     );

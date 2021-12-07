@@ -14,7 +14,7 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { GuideCard } from "../components/GuideCard";
-import { User } from "../../type";
+import { User } from "../../types";
 
 const theme = createTheme();
 const GuidesArea = () => {

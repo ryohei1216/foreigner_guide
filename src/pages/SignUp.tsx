@@ -1,4 +1,9 @@
 import * as React from "react";
+import { useHistory } from "react-router";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { getDomain } from "../utils/config";
+import axios from "axios";
+//components
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -9,15 +14,12 @@ import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-
-import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { getDomain } from "../utils/config";
-
-import axios from "axios";
+import { SelectTextFields } from "../components/common/SelectTextFields";
 
 const theme = createTheme();
 
 const SignUp = () => {
+  const history = useHistory();
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -27,7 +29,10 @@ const SignUp = () => {
       lastName: data.get("lastName"),
       email: data.get("email"),
       password: data.get("password"),
+      country: data.get("country"),
+      area: data.get("area"),
     };
+    console.log(user_data);
 
     const domain = getDomain();
     console.log(domain);
@@ -36,11 +41,33 @@ const SignUp = () => {
       .post(`http://${domain}/signUp`, user_data)
       .then((res) => {
         console.log(res);
+        history.push("/");
       })
       .catch((err) => {
         console.log(err);
       });
   };
+
+  const countries = [
+    {
+      value: "america",
+      label: "アメリカ",
+    },
+    {
+      value: "france",
+      label: "フランス",
+    },
+  ];
+  const areas = [
+    {
+      value: "north-america",
+      label: "北アメリカ",
+    },
+    {
+      value: "europe",
+      label: "ヨーロッパ",
+    },
+  ];
 
   return (
     <ThemeProvider theme={theme}>
@@ -111,6 +138,18 @@ const SignUp = () => {
                   id="password"
                   aria-required="true"
                   autoComplete="new-password"
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <SelectTextFields
+                  defaultValueLabel="america"
+                  selectOptions={countries}
+                  textFieldId="country"
+                />
+                <SelectTextFields
+                  defaultValueLabel="north-america"
+                  selectOptions={areas}
+                  textFieldId="area"
                 />
               </Grid>
             </Grid>

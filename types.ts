@@ -84,3 +84,14 @@ export type countryItem = {
   title: string;
   path: string;
 };
+
+/**
+ * CountriesCard
+ */
+
+export type wikiData = {
+  description: string;
+  thumbnail: {
+    url: string;
+  };
+};

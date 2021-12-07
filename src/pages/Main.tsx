@@ -12,7 +12,7 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 //type
-import { MenuItem } from "../../type";
+import { MenuItem } from "../../types";
 
 export const menuItems: MenuItem[] = [
   { title: "行きたい国を探す", path: "/countries" },
