@@ -52,17 +52,11 @@ export const CountriesCard: FC<Props> = ({ country }) => {
   };
 
   useEffect(() => {
-    let componentMounted = true;
     const setGetWiki = async () => {
       const wiki = await getWiki();
-      if (componentMounted) {
-        setWiki(wiki.data.wiki);
-      }
+      setWiki(wiki.data.wiki);
     };
     setGetWiki();
-    return () => {
-      componentMounted = false;
-    };
   }, [country]);
 
   return (
