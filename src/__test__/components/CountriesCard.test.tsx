@@ -4,6 +4,7 @@ import { rest } from "msw";
 import { setupServer } from "msw/node";
 import { CountriesCard } from "../../components/CountriesCard";
 import { getApiDomain } from "../../utils/config";
+import { setTimeout } from "timers";
 
 const apiDomain = getApiDomain();
 
@@ -61,6 +62,9 @@ describe("components/CommonCard", () => {
     await waitFor(() => {
       render(<CountriesCard country="アメリカ" />);
     });
+    setTimeout(function () {
+      console.log("レンダリング待ち");
+    }, 3000);
     expect(await screen.findByTestId("description")).toHaveTextContent(
       "読み込み失敗"
     );
