@@ -1,7 +1,10 @@
-import React, { FC, useEffect, useState } from "react";
+import React, { FC, useEffect, useState, useRef, useCallback } from "react";
 import { useHistory } from "react-router-dom";
 import { getApiDomain } from "../utils/config";
 import axios from "axios";
+import { useStateSafe } from "../hooks/useStateSafe";
+//types
+import { wikiData } from "../../types";
 //components
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
@@ -17,7 +20,13 @@ type Props = {
 export const CountriesCard: FC<Props> = ({ country }) => {
   const history = useHistory();
   const apiDomain = getApiDomain();
-  const [wiki, setWiki] = useState<any>();
+  const initialWikiData: wikiData = {
+    description: "",
+    thumbnail: {
+      url: "",
+    },
+  };
+  const [wiki, setWiki] = useStateSafe<wikiData>(initialWikiData);
   const jumpCountryPage = (country: string) => {
     history.push(`/country/${country}`);
   };
@@ -36,20 +45,25 @@ export const CountriesCard: FC<Props> = ({ country }) => {
   const getWiki = async () => {
     const wikiData = await axios
       .get(`${apiDomain}/country_wiki?q=${country}`)
-      .catch((err) => {
-        console.log(err);
+      .catch(() => {
         return loadFailedData;
       });
     return wikiData;
   };
 
   useEffect(() => {
+    let componentMounted = true;
     const setGetWiki = async () => {
       const wiki = await getWiki();
-      setWiki(wiki.data.wiki);
+      if (componentMounted) {
+        setWiki(wiki.data.wiki);
+      }
     };
     setGetWiki();
-  }, []);
+    return () => {
+      componentMounted = false;
+    };
+  }, [country]);
 
   return (
     <Card sx={{ maxWidth: 345 }}>

@@ -10,7 +10,7 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
-import { countryItem } from "../../type";
+import { countryItem } from "../../types";
 
 export const countryItems: countryItem[] = [
   { title: "アメリカ", path: "america" },

@@ -4,7 +4,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import styled from "styled-components";
 import axios from "axios";
 import { getApiDomain } from "../utils/config";
-import { CountriesInterface } from "../../type";
+import { CountriesInterface } from "../../types";
 //components
 import CssBaseline from "@mui/material/CssBaseline";
 import Grid from "@mui/material/Grid";
