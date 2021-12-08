@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import styled from "styled-components";
-import { useAppSelector } from "../store/hooks";
 import { getApiDomain } from "../utils/config";
 import axios from "axios";
 

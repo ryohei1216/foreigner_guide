@@ -1,4 +1,4 @@
-export interface CountriesInterface {
+export type CountriesInterface = {
   _type: string;
   instrumentation: Instrumentation;
   readLink: string;
@@ -6,7 +6,7 @@ export interface CountriesInterface {
   totalEstimatedMatches: number;
   nextOffset: number;
   value: Value[];
-}
+} | null;
 
 export interface Instrumentation {
   _type: string;

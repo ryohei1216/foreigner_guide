@@ -1,8 +1,8 @@
 import * as React from "react";
 import { useHistory } from "react-router";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { getDomain } from "../utils/config";
 import axios from "axios";
+import { getApiDomain } from "../utils/config";
 //components
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
@@ -34,11 +34,10 @@ const SignUp = () => {
     };
     console.log(user_data);
 
-    const domain = getDomain();
-    console.log(domain);
+    const apiDomain = getApiDomain();
 
     axios
-      .post(`http://${domain}/signUp`, user_data)
+      .post(`${apiDomain}/signUp`, user_data)
       .then((res) => {
         console.log(res);
         history.push("/");
@@ -60,7 +59,7 @@ const SignUp = () => {
   ];
   const areas = [
     {
-      value: "north-america",
+      value: "north_america",
       label: "北アメリカ",
     },
     {
@@ -104,6 +103,7 @@ const SignUp = () => {
                   label="First Name"
                   aria-required="true"
                   autoFocus
+                  data-testid="firstName"
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
@@ -115,6 +115,7 @@ const SignUp = () => {
                   name="lastName"
                   aria-required="true"
                   autoComplete="family-name"
+                  data-testid="lastName"
                 />
               </Grid>
               <Grid item xs={12}>
@@ -126,6 +127,7 @@ const SignUp = () => {
                   name="email"
                   aria-required="true"
                   autoComplete="email"
+                  data-testid="email"
                 />
               </Grid>
               <Grid item xs={12}>
@@ -138,6 +140,7 @@ const SignUp = () => {
                   id="password"
                   aria-required="true"
                   autoComplete="new-password"
+                  data-testid="password"
                 />
               </Grid>
               <Grid item xs={12}>
@@ -147,7 +150,7 @@ const SignUp = () => {
                   textFieldId="country"
                 />
                 <SelectTextFields
-                  defaultValueLabel="north-america"
+                  defaultValueLabel="north_america"
                   selectOptions={areas}
                   textFieldId="area"
                 />
