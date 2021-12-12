@@ -1,8 +1,6 @@
 import { useHistory } from "react-router-dom";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import styled from "styled-components";
-import { useSelector } from "react-redux";
-import { DefaultRootState, LoginInfo } from "../utils/store/type";
 //components
 import CameraIcon from "@mui/icons-material/PhotoCamera";
 import CssBaseline from "@mui/material/CssBaseline";

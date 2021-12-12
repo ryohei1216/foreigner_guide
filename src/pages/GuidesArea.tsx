@@ -1,8 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useParams } from "react-router";
 import styled from "styled-components";
-import { getApiDomain } from "../utils/config";
-import axios from "axios";
 
 //components
 import { createTheme, ThemeProvider } from "@mui/material/styles";
@@ -13,39 +11,14 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { GuideCard } from "../components/GuideCard";
-import { User } from "../../types";
+import { useUsers } from "../hooks/useUsers";
 
 const theme = createTheme();
 const GuidesArea = () => {
-  const apiDomain = getApiDomain();
   const { area } = useParams<{ area: string }>();
-  const [users, setUsers] = useState<User[]>();
-
-  const getUsersByArea = async () => {
-    const res = await axios.get(`${apiDomain}/users_area?area=${area}`);
-    return res;
-  };
-
-  useEffect(() => {
-    const fetchUsers = async () => {
-      const users = await getUsersByArea();
-      console.log(users);
-    };
-    fetchUsers();
-  });
-
-  let areaName;
-  switch (area) {
-    case "europe":
-      areaName = "ヨーロッパ";
-      break;
-    case "north_america":
-      areaName = "北アメリカ";
-      break;
-    case "asia":
-      areaName = "アジア";
-      break;
-  }
+  const { useUsersByArea } = useUsers();
+  const users = useUsersByArea(area);
+  console.log(users);
 
   return (
     <ThemeProvider theme={theme}>
@@ -54,18 +27,18 @@ const GuidesArea = () => {
         <Toolbar style={{ margin: "0 auto", width: "40%" }}>
           <CameraIcon fontSize="large" sx={{ mr: 2 }} />
           <Typography variant="h4" color="inherit" noWrap>
-            {areaName}のガイド一覧
+            {area}のガイド一覧
           </Typography>
         </Toolbar>
       </ToolBarCenter>
       <div>
         <Container sx={{ py: 8 }} maxWidth="lg">
           <Grid container spacing={4}>
-            {/* {guides.map((guide) => (
-              <Grid item key={country} xs={12} sm={6} md={4}>
-                <GuidesCard country={country} />
+            {users.map((user) => (
+              <Grid item key={user.id} xs={12} sm={6} md={4}>
+                <GuideCard area={area} user={user} />
               </Grid>
-            ))} */}
+            ))}
           </Grid>
         </Container>
       </div>

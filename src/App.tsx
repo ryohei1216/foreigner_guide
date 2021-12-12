@@ -10,6 +10,7 @@ import SearchGuides from "./pages/SearchGuides";
 import SelectGuideArea from "./pages/SelectGuideArea";
 import SelectGuideCountry from "./pages/SelectGuideCountry";
 import GuidesArea from "./pages/GuidesArea";
+import Message from "./pages/Message";
 function App() {
   return (
     <BrowserRouter>
@@ -25,6 +26,7 @@ function App() {
           <Route exact path="/guides/:area" component={GuidesArea} />
           <Route exact path="/guides_country" component={SelectGuideCountry} />
           {/* <Route exact path="/guides_country/:country" component={GuidesCountry} /> */}
+          <Route exact path="/message" component={Message} />
         </Switch>
       </Layout>
     </BrowserRouter>
