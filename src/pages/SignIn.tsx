@@ -39,6 +39,7 @@ export default function SignIn() {
         if (res.status === 200) {
           dispatch(
             signIn({
+              id: res.data.getUser.id,
               email: res.data.getUser.email,
               password: res.data.getUser.password,
             })

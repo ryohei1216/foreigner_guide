@@ -1,12 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../../store";
-
-interface SignInInfo {
-  email: string;
-  password: string;
-}
+import { SignInInfo } from "../../../../types";
 
 const initialState: SignInInfo = {
+  id: "",
   email: "",
   password: "",
 };
@@ -16,6 +13,7 @@ export const signInInfoSlice = createSlice({
   initialState,
   reducers: {
     signIn: (state, action) => {
+      state.id = action.payload.id;
       state.email = action.payload.email;
       state.password = action.payload.password;
     },

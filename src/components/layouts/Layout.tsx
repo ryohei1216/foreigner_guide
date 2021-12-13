@@ -12,7 +12,7 @@ export const Layout: VFC<Props> = ({ children }) => {
     sections: [
       { title: "TOP", url: "/" },
       { title: "COUNTRIES", url: "/countries" },
-      { title: "GUIDES", url: "/guides" },
+      { title: "GUIDES", url: "/search_guides" },
       { title: "GUIDE", url: "/guide" },
       { title: "MESSAGE", url: "/message" },
       { title: "MYPAGE", url: "/mypage" },

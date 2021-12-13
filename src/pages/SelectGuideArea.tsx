@@ -13,9 +13,9 @@ import Button from "@mui/material/Button";
 import { areaItem } from "../../types";
 
 export const areaItems: areaItem[] = [
-  { title: "ヨーロッパ", path: "europe" },
-  { title: "北アメリカ", path: "north_america" },
-  { title: "アジア", path: "asia" },
+  { title: "ヨーロッパ", path: "ヨーロッパ" },
+  { title: "北アメリカ", path: "北アメリカ" },
+  { title: "アジア", path: "アジア" },
 ];
 
 const theme = createTheme();

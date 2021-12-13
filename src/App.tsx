@@ -10,6 +10,8 @@ import SearchGuides from "./pages/SearchGuides";
 import SelectGuideArea from "./pages/SelectGuideArea";
 import SelectGuideCountry from "./pages/SelectGuideCountry";
 import GuidesArea from "./pages/GuidesArea";
+import Message from "./pages/Message";
+import ChatRoom from "./pages/ChatRoom";
 function App() {
   return (
     <BrowserRouter>
@@ -25,6 +27,8 @@ function App() {
           <Route exact path="/guides/:area" component={GuidesArea} />
           <Route exact path="/guides_country" component={SelectGuideCountry} />
           {/* <Route exact path="/guides_country/:country" component={GuidesCountry} /> */}
+          <Route exact path="/message" component={Message} />
+          <Route exact path="/chatroom/:id" component={ChatRoom} />
         </Switch>
       </Layout>
     </BrowserRouter>

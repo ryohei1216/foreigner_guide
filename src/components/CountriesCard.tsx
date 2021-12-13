@@ -1,7 +1,8 @@
-import React, { FC, useEffect, useState, useRef, useCallback } from "react";
+import React, { FC, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { getApiDomain } from "../utils/config";
 import axios from "axios";
+import styled from "styled-components";
 import { useStateSafe } from "../hooks/useStateSafe";
 //types
 import { wikiData } from "../../types";
@@ -12,6 +13,7 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
+import CircularLoading from "./common/CircularLoading";
 
 type Props = {
   country: string;
@@ -20,6 +22,7 @@ type Props = {
 export const CountriesCard: FC<Props> = ({ country }) => {
   const history = useHistory();
   const apiDomain = getApiDomain();
+  const [isLoading, setIsLoading] = useStateSafe<boolean>(true);
   const initialWikiData: wikiData = {
     description: "",
     thumbnail: {
@@ -47,6 +50,9 @@ export const CountriesCard: FC<Props> = ({ country }) => {
       .get(`${apiDomain}/country_wiki?q=${country}`)
       .catch(() => {
         return loadFailedData;
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
     return wikiData;
   };
@@ -61,6 +67,11 @@ export const CountriesCard: FC<Props> = ({ country }) => {
 
   return (
     <Card sx={{ maxWidth: 345 }}>
+      {isLoading && (
+        <StyledCenter data-testid="loading">
+          <CircularLoading />
+        </StyledCenter>
+      )}
       <CardMedia
         data-testid="media"
         component="img"
@@ -93,3 +104,9 @@ export const CountriesCard: FC<Props> = ({ country }) => {
     </Card>
   );
 };
+
+const StyledCenter = styled.div`
+  .MuiBox-root {
+    margin: 0 43%;
+  }
+`;

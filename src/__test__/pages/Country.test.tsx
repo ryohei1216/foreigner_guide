@@ -18,19 +18,22 @@ jest.mock("react-router-dom", () => ({
 
 //DummyData
 const countryDummy = {
-  webSearchUrl: "testWebUrl",
-  contentUrl: "testContentUrl",
-  name: "",
+  countries: {
+    value: [
+      {
+        webSearchUrl: "testWebUrl",
+        contentUrl: "testContentUrl",
+        name: "アメリカ",
+        imageId: "testId",
+      },
+    ],
+  },
 };
 
 //APIServerの設定
 const server = setupServer(
   rest.get(`${apiDomain}/country`, (req, res, ctx) => {
-    const country = req.url.searchParams.get("q");
-    if (country) {
-      countryDummy.name = country;
-    }
-    return res(ctx.status(200), ctx.json([countryDummy]));
+    return res(ctx.status(200), ctx.json(countryDummy));
   })
 );
 
@@ -42,11 +45,35 @@ afterEach(() => {
 afterAll(() => server.close());
 
 describe("pages/Country", () => {
-  test("CountryAPI成功時⇒testidがある", async () => {
+  test("CountryAPI成功時", async () => {
+    render(<Country />);
+    //fetch前
+    expect(screen.getByTestId("id")).toHaveTextContent("アメリカ"); //queryparamsから国名取得
+    expect(screen.getByTestId("loading")).toBeTruthy(); //loading表示
+    expect(screen.queryByTestId("country-card")).toBeFalsy(); //CountryCard非表示
+    //fetch後
     await waitFor(() => {
-      render(<Country />);
+      expect(screen.queryByTestId("loading")).toBeFalsy(); //loading非表示
     });
-    //Typography(queryParamsから国名取得)
-    expect(await screen.findByTestId("id")).toHaveTextContent("アメリカ");
+    expect(await screen.findByTestId("country-card-wrap")).toBeTruthy(); //CountryCard表示
+  });
+
+  test("CountryAPI失敗時", async () => {
+    server.use(
+      rest.get(`${apiDomain}/country`, (req, res, ctx) => {
+        return res(ctx.status(400));
+      })
+    );
+    render(<Country />); //レンダリング
+    //fetch前
+    expect(screen.getByTestId("id")).toHaveTextContent("アメリカ"); //queryparamsから国名取得
+    expect(screen.getByTestId("loading")).toBeTruthy(); //loading表示
+    expect(screen.queryByTestId("failedMessage")).toBeFalsy(); //エラーメッセージ非表示
+    //fetch後
+    await waitFor(() => {
+      //非表示になるまで待つ
+      expect(screen.queryByTestId("loading")).toBeFalsy(); //loading非表示
+    });
+    expect(await screen.findByTestId("failedMessage")).toBeTruthy(); //エラーメッセージ表示
   });
 });
