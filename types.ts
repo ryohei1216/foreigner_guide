@@ -106,3 +106,13 @@ export type wikiData = {
     url: string;
   };
 };
+
+/**
+ * Message
+ */
+
+export type Message = {
+  UserId: string;
+  Message: string;
+  CreatedAt: Date;
+};

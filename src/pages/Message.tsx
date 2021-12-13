@@ -1,19 +1,25 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
+import { useUsers } from "../hooks/useUsers";
 //components
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import CameraIcon from "@mui/icons-material/PhotoCamera";
 import CssBaseline from "@mui/material/CssBaseline";
 import Grid from "@mui/material/Grid";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import Button from "@mui/material/Button";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import MessageCard from "../components/MessageCard";
 
 const theme = createTheme();
 export default function Message() {
   const history = useHistory();
+  const { useApplyUsers } = useUsers();
+  const applyUsers = useApplyUsers();
+  console.log(applyUsers);
   return (
     <div>
       <ThemeProvider theme={theme}>
@@ -27,33 +33,11 @@ export default function Message() {
         </ToolBarCenter>
         <div>
           <Container sx={{ py: 8 }} maxWidth="lg">
-            <Grid container spacing={1}>
-              <Grid item key="area" xs={12} alignItems="center">
-                <Button
-                  variant="outlined"
-                  color="primary"
-                  fullWidth
-                  style={{ fontSize: "20px", fontWeight: "bold" }}
-                  onClick={() => {
-                    history.push("/guides_area");
-                  }}
-                >
-                  エリアで探す
-                </Button>
-              </Grid>
-              <Grid item key="country" xs={12} alignItems="center">
-                <Button
-                  variant="outlined"
-                  color="primary"
-                  fullWidth
-                  style={{ fontSize: "20px", fontWeight: "bold" }}
-                  onClick={() => {
-                    history.push("/guides_country");
-                  }}
-                >
-                  国で探す
-                </Button>
-              </Grid>
+            <Grid xs={12} container spacing={1}>
+              {applyUsers &&
+                applyUsers.map((user) => (
+                  <MessageCard user={user} key={user.id} />
+                ))}
             </Grid>
           </Container>
         </div>
