@@ -1,4 +1,5 @@
 import React, { FC } from "react";
+import { useHistory } from "react-router";
 import { useAppSelector } from "../store/hooks";
 import { getApiDomain } from "../utils/config";
 //types
@@ -22,6 +23,7 @@ type Props = {
 export const GuideCard: FC<Props> = ({ area, user }) => {
   const signInInfo = useAppSelector((state) => state.signInInfo);
   const apiDomain = getApiDomain();
+  const history = useHistory();
 
   const applyMatch = (guideId: string, userInfo: SignInInfo) => {
     axios
@@ -70,7 +72,10 @@ export const GuideCard: FC<Props> = ({ area, user }) => {
         <Button
           size="large"
           onClick={() => {
-            applyMatch(user.id, signInInfo);
+            if (signInInfo.id) {
+              applyMatch(user.id, signInInfo);
+            }
+            history.push("/signIn");
           }}
         >
           申請する

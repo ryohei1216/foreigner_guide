@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import { useUsers } from "../hooks/useUsers";
+import { useAppSelector } from "../store/hooks";
 //components
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -19,7 +20,14 @@ export default function Message() {
   const history = useHistory();
   const { useApplyUsers } = useUsers();
   const applyUsers = useApplyUsers();
+  const signInInfo = useAppSelector((state) => state.signInInfo);
   console.log(applyUsers);
+
+  useEffect(() => {
+    if (!signInInfo.id) {
+      history.push("/signIn");
+    }
+  }, []);
   return (
     <div>
       <ThemeProvider theme={theme}>
