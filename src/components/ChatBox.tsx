@@ -1,7 +1,6 @@
 import React, { FC } from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
-import Typography from "@mui/material/Typography";
 import { useUsers } from "../hooks/useUsers";
 import { useMessages } from "../hooks/useMessages";
 import { useAppSelector } from "../store/hooks";
@@ -16,11 +15,11 @@ export const ChatBox: FC<Props> = ({ chatUserId, text }) => {
   const signInInfo = useAppSelector((state) => state.signInInfo);
   const { useMessagesByIds } = useMessages();
   const messages = useMessagesByIds(chatUserId, text);
-  const { useUserById } = useUsers();
-  const chatUser = useUserById(chatUserId);
-  const user = useUserById(signInInfo.id);
-  console.log(chatUser);
-  console.log(user);
+  // const { useUserById } = useUsers();
+  // const chatUser = useUserById(chatUserId);
+  // const user = useUserById(signInInfo.id);
+  // console.log(chatUser);
+  // console.log(user);
   return (
     <Card sx={{ minWidth: 275 }}>
       <CardContent style={{ backgroundColor: "rgb(67 79 227 / 17%)" }}>

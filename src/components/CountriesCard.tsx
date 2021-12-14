@@ -34,36 +34,30 @@ export const CountriesCard: FC<Props> = ({ country }) => {
     history.push(`/country/${country}`);
   };
 
-  const loadFailedData = {
-    data: {
-      wiki: {
-        description: "読み込み失敗",
-        thumbnail: {
-          url: "https://jmva.or.jp/wp-content/uploads/2018/07/noimage.png",
+  useEffect(() => {
+    const loadFailedData = {
+      data: {
+        wiki: {
+          description: "読み込み失敗",
+          thumbnail: {
+            url: "https://jmva.or.jp/wp-content/uploads/2018/07/noimage.png",
+          },
         },
       },
-    },
-  };
-
-  const getWiki = async () => {
-    const wikiData = await axios
-      .get(`${apiDomain}/country_wiki?q=${country}`)
-      .catch(() => {
-        return loadFailedData;
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
-    return wikiData;
-  };
-
-  useEffect(() => {
-    const setGetWiki = async () => {
-      const wiki = await getWiki();
+    };
+    const getWiki = async () => {
+      const wiki = await axios
+        .get(`${apiDomain}/country_wiki?q=${country}`)
+        .catch(() => {
+          return loadFailedData;
+        })
+        .finally(() => {
+          setIsLoading(false);
+        });
       setWiki(wiki.data.wiki);
     };
-    setGetWiki();
-  }, [country]);
+    getWiki();
+  }, [apiDomain, country, setIsLoading, setWiki]);
 
   return (
     <Card sx={{ maxWidth: 345 }}>

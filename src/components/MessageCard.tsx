@@ -16,7 +16,6 @@ type Props = {
 
 const MessageCard: FC<Props> = ({ user }) => {
   const history = useHistory();
-  const signInInfo = useAppSelector((state) => state.signInInfo);
   return (
     <Grid item key={user.id} xs={12} alignItems="center">
       <Card
