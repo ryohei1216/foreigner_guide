@@ -19,7 +19,7 @@
     "isolatedModules": true,
     "jsx": "react-jsx",
     "sourceMap": true,
-    "noEmit": true
+    // "noEmit": true
   },
   "include": [
     "src/**/*"
