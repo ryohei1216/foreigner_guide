@@ -37,6 +37,7 @@ const Country = () => {
         setIsLoading(false);
       });
   }, [id, apiDomain]);
+  console.log(country);
 
   return (
     <ThemeProvider theme={theme}>
@@ -63,7 +64,7 @@ const Country = () => {
                 <CircularLoading />
               </ToolBarCenter>
             )}
-            {country &&
+            {/* {country &&
               country.value.map((data) => (
                 <Grid
                   data-testid="country-card-wrap"
@@ -79,7 +80,7 @@ const Country = () => {
                     title={data.name}
                   />
                 </Grid>
-              ))}
+              ))} */}
             {failedMessage && (
               <ToolBarCenter>
                 <Toolbar>

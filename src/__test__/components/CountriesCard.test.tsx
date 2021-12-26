@@ -36,7 +36,7 @@ afterAll(() => server.close());
 describe("components/CountriesCard", () => {
   test("CountriesCardにpropsを渡してタイトル表示", async () => {
     render(<CountriesCard country="アメリカ" />);
-    expect(screen.getByTestId("country")).toHaveTextContent("アメリカ");
+    expect(screen.getByTestId("country")).toHaveTextContent("アメリカ"); //propsの表示
   });
 
   test("WikiAPIFetchのuseEffect非同期処理成功⇒imageとtextの表示,loadingの非表示", async () => {
